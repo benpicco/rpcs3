@@ -382,7 +382,7 @@ public:
 		case MFC_RdListStallStat: //Read DMA list stall-and-notify status
 		case MFC_WrListStallAck: //Write DMA list stall-and-notify acknowledge
 		case MFC_RdAtomicStat: //Read completion status of last completed immediate MFC atomic update command
-			ConLog.Error("%s error: unimplemented channel (%s).", __FUNCTION__, spu_ch_name[ch]);
+			ConLog.Error("%s error: unimplemented channel (%s).", __FUNCTION__, spu_ch_name[ch].c_str());
 		break;
 
 		case SPU_WrOutMbox:
@@ -422,7 +422,7 @@ public:
 		case MFC_WrTagMask: //Write tag mask
 		case MFC_WrTagUpdate: //Write request for conditional or unconditional tag status update
 		case MFC_WrListStallAck: //Write DMA list stall-and-notify acknowledge
-			ConLog.Error("%s error: unimplemented channel (%s).", __FUNCTION__, spu_ch_name[ch]);
+			ConLog.Error("%s error: unimplemented channel (%s).", __FUNCTION__, spu_ch_name[ch].c_str());
 		break;
 
 		case SPU_WrOutIntrMbox:
@@ -467,7 +467,7 @@ public:
 		case MFC_RdTagStat: //Read tag status with mask applied
 		case MFC_RdListStallStat: //Read DMA list stall-and-notify status
 		case MFC_RdAtomicStat: //Read completion status of last completed immediate MFC atomic update command
-			ConLog.Error("%s error: unimplemented channel (%s).", __FUNCTION__, spu_ch_name[ch]);
+			ConLog.Error("%s error: unimplemented channel (%s).", __FUNCTION__, spu_ch_name[ch].c_str());
 		break;
 
 		case SPU_RdInMbox:

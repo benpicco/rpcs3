@@ -1,10 +1,16 @@
 #include "stdafx.h"
 #include "OpenGL.h"
+#ifdef __linux__
+#include <GL/glx.h>
+#define glGetProcAddress	glXGetProcAddress
+#else
+#define glGetProcAddress        wglGetProcAddress
+#endif
 
 void InitProcTable()
 {
 #define OPENGL_PROC(p, n) OPENGL_PROC2(p, n, gl##n)
-#define OPENGL_PROC2(p, n, tn) /*if(!gl##n)*/ if(!(gl##n = (p)wglGetProcAddress(#tn))) ConLog.Error("OpenGL: initialization of " #tn " failed.")
+#define OPENGL_PROC2(p, n, tn) /*if(!gl##n)*/ if(!(gl##n = (p)glGetProcAddress(#tn))) ConLog.Error("OpenGL: initialization of " #tn " failed.")
 	#include "GLProcTable.tbl"
 #undef OPENGL_PROC
 #undef OPENGL_PROC2
@@ -30,7 +36,7 @@ OpenGL::~OpenGL()
 void OpenGL::Init()
 {
 #define OPENGL_PROC(p, n) OPENGL_PROC2(p, n, gl##n)
-#define OPENGL_PROC2(p, n, tn) if(!(n = (p)wglGetProcAddress(#tn))) ConLog.Error("OpenGL: initialization of " #tn " failed.")
+#define OPENGL_PROC2(p, n, tn) if(!(n = (p)glGetProcAddress(#tn))) ConLog.Error("OpenGL: initialization of " #tn " failed.")
 	#include "GLProcTable.tbl"
 #undef OPENGL_PROC
 #undef OPENGL_PROC2

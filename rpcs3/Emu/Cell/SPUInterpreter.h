@@ -1,14 +1,18 @@
 #pragma once
 
+#include <cstdint>
 #include "Emu/Cell/SPUOpcodes.h"
 #include "Emu/Memory/Memory.h"
 #include "Emu/Cell/SPUThread.h"
 #include "Emu/SysCalls/SysCalls.h"
 
 #define UNIMPLEMENTED() UNK(__FUNCTION__)
+#ifndef _CRT_ALIGN
+#define _CRT_ALIGN(x) __attribute__ ((__aligned__ (x)))
+#endif
 
 typedef union _CRT_ALIGN(16) __u32x4 {
-	unsigned __int32 _u32[4];
+	uint32_t _u32[4];
 	__m128i m128i;
 	__m128 m128;
 	__m128d m128d;

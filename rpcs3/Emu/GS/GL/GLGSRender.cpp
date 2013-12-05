@@ -608,7 +608,9 @@ void GLGSRender::OnInitThread()
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_SCISSOR_TEST);
 
+#ifdef _WIN32
 	glSwapInterval(Ini.GSVSyncEnable.GetValue() ? 1 : 0);
+#endif
 }
 
 void GLGSRender::OnExitThread()
